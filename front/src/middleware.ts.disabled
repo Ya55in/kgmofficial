@@ -1,0 +1,36 @@
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+const ALLOWED_ROUTES = ["/coming-soon", "/book-test-drive"];
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Allow API routes and Next.js internals/static assets
+  if (
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/static") ||
+    pathname.startsWith("/media") ||
+    pathname === "/favicon.ico"
+  ) {
+    return NextResponse.next();
+  }
+
+  // Allow coming soon and book test drive pages
+  if (ALLOWED_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`))) {
+    return NextResponse.next();
+  }
+
+  // Redirect root path and everything else to coming soon
+  const url = request.nextUrl.clone();
+  url.pathname = "/coming-soon";
+  return NextResponse.redirect(url, 307); // Use 307 for temporary redirect
+}
+
+export const config = {
+  matcher: [
+    // Exclude static files, media, and non-locale routes
+    "/((?!_next/static|_next/image|favicon.ico|media/.*|coming-soon|book-test-drive|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|pdf)).*)",
+  ],
+};
