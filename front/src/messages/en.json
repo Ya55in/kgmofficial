@@ -1,0 +1,1392 @@
+{
+  "navigation": {
+    "models": "MODELS",
+    "brand": "BRAND",
+    "book": "BOOK",
+    "contactUs": "CONTACT US",
+    "support": "SUPPORT",
+    "search": "SEARCH",
+    "brandStory": "BRAND STORY",
+    "heritage1954": "HERITAGE 1954",
+    "recycling": "RECYCLING"
+  },
+  "home": {
+    "hero": {
+      "title": "TORRES",
+      "subtitle": "NEW TOOLS. NEW LIFE.",
+      "learnMore": "Learn more",
+      "sound": "SOUND",
+      "quick": "QUICK"
+    },
+    "exploreLineup": {
+      "title": "Explore KGM Lineup",
+      "viewAllModels": "View All Models",
+      "learnMore": "Learn more",
+      "tivoli": {
+        "title": "Tivoli",
+        "headline": "Urban\nAdventure"
+      },
+      "torres": {
+        "title": "Torres",
+        "headline": "Unexpected\nAdventure"
+      },
+      "torresEv": {
+        "title": "Torres EV",
+        "headline": "The Best of Both\nWorld - EV & SUV"
+      },
+      "grandMusso": {
+        "title": "Grand Musso",
+        "headline": "Powerful\nPickup Truck"
+      },
+      "rexton": {
+        "title": "Rexton",
+        "headline": "Luxury\nSUV"
+      }
+    },
+    "brand": {
+      "title": "Brand",
+      "subtitle": "Our story and values"
+    },
+    "insideKGM": {
+      "title": "Inside KGM",
+      "subtitle": "Learn more about our company"
+    },
+    "quickAccess": {
+      "title": "Quick Access",
+      "subtitle": "Find what you need quickly"
+    }
+  },
+  "models": {
+    "title": "Models",
+    "subtitle": "Discover our complete range of vehicles",
+    "selectModel": "Select a Model",
+    "suv": "SUV",
+    "pickup": "PICKUP",
+    "catalog": "CATALOG",
+    "viewDetails": "View Details",
+    "ev": "EV",
+    "badges": {
+      "new": "NEW",
+      "best": "BEST",
+      "hot": "HOT",
+      "steadySeller": "STEADY SELLER"
+    },
+    "modelNames": {
+      "tivoli": "TIVOLI",
+      "torres": "TORRES",
+      "torresEvx": "TORRES EVX",
+      "rexton": "REXTON",
+      "mussoGrand": "GRAND MUSSO"
+    },
+    "rexton": "REXTON",
+    "mussoGrand": "GRAND MUSSO",
+    "noModels": "No models available",
+    "loading": "Loading models..."
+  },
+  "tivoli": {
+    "hero": {
+      "title": "TIVOLI",
+      "subtitle": "My 1st SUV",
+      "description": "Smart Style, Iconic Exterior, Functional Interior",
+      "catalogButton": "CATALOG",
+      "accessoryButton": "ACCESSORY"
+    },
+    "section2": {
+      "title": "CONFIDENT, YOUTHFUL AND SAVVY",
+      "topButton": "TOP"
+    },
+    "exterior": {
+      "title": "Exterior",
+      "subtitle": "Design That Stands Out",
+      "views": {
+        "front": "Front view",
+        "side": "Side view",
+        "rear": "Rear view"
+      }
+    },
+    "colorConfig": {
+      "colorBoard": "Color Board",
+      "vr360": "360° VR",
+      "oneTone": "1 TONE",
+      "twoTone": "2 TONE"
+    },
+    "vr": {
+      "title": "360° VR View",
+      "notAvailable": "VR images not available for this color/tone combination"
+    },
+    "disclaimer": {
+      "images": "* Images of this vehicle are for reference only and may differ from the actual product.",
+      "colors": "* Each color is arranged from left to right in order of customer preference."
+    },
+    "section4": {
+      "title": "DRIVER-CENTRIC COCKPIT"
+    },
+    "section5": {
+      "subtitle": "INTERIOR",
+      "title": "FEATURES & COLORS"
+    },
+    "interior": {
+      "colorLabel": "BLACK",
+      "disclaimer": "* The photos and descriptions are for reference only and may differ from the actual product."
+    },
+    "safety": {
+      "title": "Safety",
+      "subtitle": "Advanced Driver Assistance Systems",
+      "adas": {
+        "title": "ADAS System",
+        "subtitle": "Autonomous Emergency Braking (AEB)",
+        "description": "AEB warns the driver of a potential frontal collision while driving and automatically activates the brakes to prevent an accident."
+      },
+      "highStrengthSteel": {
+        "title": "Safety-prioritized design",
+        "subtitle": "79% high-strength steel",
+        "description": "The use of high-strength steel (79%) and ultra-high-strength steel (40%) applied through the Hot Press Forming (HPF) process maximizes the vehicle's body rigidity and passenger safety."
+      },
+      "airbags": {
+        "title": "Keeping all occupants safe",
+        "subtitle": "7 Airbags",
+        "description": "The vehicle is equipped with two airbags for the driver and front passenger, one knee airbag for the driver, two side airbags in the first row, and two curtain airbags for the second row."
+      },
+      "esc": {
+        "title": "Secured safety in all driving conditions",
+        "subtitle": "Electronic Stability Control (ESC)",
+        "description": "ESC provides various features to prevent accidents in advance by ensuring stable vehicle posture control in a variety of driving conditions."
+      },
+      "additional": {
+        "title": "Additional safety features",
+        "subtitle": "Comprehensive Protection",
+        "description": "Advanced safety technologies and systems designed to protect you and your passengers in all driving conditions."
+      }
+    },
+    "convenience": {
+      "title": "Convenience",
+      "subtitle": "Smart Features for Modern Life",
+      "drivingComfort": {
+        "title": "Driving comfort",
+        "description": "Enhanced driving experience with advanced comfort features"
+      },
+      "luggageSpace": {
+        "title": "Luggage space efficiency",
+        "subtitle": "Magic tray",
+        "description": "Flexible storage solutions for all your needs"
+      },
+      "airQuality": {
+        "title": "Air quality control",
+        "subtitle": "Front dual zone auto air conditioning system",
+        "description": "Maintain perfect climate control for all passengers"
+      },
+      "additional": {
+        "title": "Additional features",
+        "subtitle": "More features",
+        "description": "Discover additional convenience features designed to enhance your driving experience and make every journey more comfortable."
+      },
+      "seats": {
+        "title": "Driving comfort",
+        "subtitle": "8-way power-adjustable front seats",
+        "description": "Featuring an 8-way power-adjustable driver seat with 2-way lumbar support, and 6-way power-adjustable seat to provide a comfortable driving experience."
+      },
+      "magicTray": {
+        "title": "Luggage space efficiency",
+        "subtitle": "Magic tray",
+        "description": "Can be easily removed or installed as needed, allowing for the storage of various items beneath the flat space, enhancing luggage space efficiency."
+      },
+      "airConditioning": {
+        "title": "Air quality control",
+        "subtitle": "Front dual zone auto air conditioning system",
+        "description": "The temperatures for the driver and front passenger seats can be independently adjusted, and a micro air conditioning filter has been applied to ensure a more comfortable environment."
+      }
+    },
+    "performance": {
+      "title": "Performance",
+      "subtitle": "Power and Efficiency Combined",
+      "awd": {
+        "subtitle": "Active AWD",
+        "description": "Intelligent all-wheel drive system for optimal traction"
+      },
+      "economical": {
+        "title": "Drive economically",
+        "description": "Efficient engine design for better fuel economy"
+      },
+      "driveMode": {
+        "title": "Dynamic but safe driving",
+        "subtitle": "Drive mode system",
+        "description": "Multiple driving modes for different conditions"
+      },
+      "handling": {
+        "title": "Agile response handling",
+        "description": "Responsive steering and suspension for confident driving"
+      },
+      "awdSystem": {
+        "title": "Four-wheel drive system",
+        "description": "Intelligent all-wheel drive system for optimal traction and performance in all conditions."
+      },
+      "idleStop": {
+        "title": "Drive economically",
+        "subtitle": "Idle Stop & Go system",
+        "description": "Automatic engine shut-off when stationary to improve fuel efficiency and reduce emissions."
+      },
+      "ecoFriendly": {
+        "title": "Eco-friendly drive",
+        "description": "Advanced engine technology for reduced emissions and improved fuel efficiency."
+      },
+      "engineSubtitle": "1.5 litre gasoline direct injection (GDI) turbo engine",
+      "engineDescription": "With a maximum output of 163 PS at 5,000 to 5,500 rpm and a maximum torque of 28.6 kgf.m at 1,500 to 4,000 rpm, Tivoli offers a lively driving experience even at low-speed ranges.",
+      "agileHandling": {
+        "title": "Agile response handling",
+        "subtitle": "6-speed automatic transmission",
+        "description": "The third-generation Aisin 6-speed transmission, adopted by world-class vehicles, offers proven durability and stable shifting performance."
+      }
+    },
+    "specifications": {
+      "title": "SPECIFICATION",
+      "subtitle": "Technical Specifications",
+      "dimensions": {
+        "overallLength": "Overall Length",
+        "overallWidth": "Overall Width",
+        "overallHeight": "Overall Height",
+        "wheelbase": "Wheelbase",
+        "groundClearance": "Ground Clearance"
+      },
+      "powertrain": {
+        "title": "POWERTRAIN",
+        "engineType": "Engine Type",
+        "displacement": "Displacement",
+        "maxPower": "Max Power",
+        "maxTorque": "Max Torque",
+        "transmission": "Transmission",
+        "driveType": "Drive Type"
+      },
+      "fuelEfficiency": {
+        "title": "FUEL EFFICIENCY",
+        "city": "City",
+        "highway": "Highway",
+        "combined": "Combined",
+        "co2Emissions": "CO2 Emissions"
+      },
+      "tyreInformation": {
+        "title": "TYRE INFORMATION",
+        "maker": "Maker",
+        "size": "Size",
+        "productSheet": "Product Information Sheet",
+        "tyreLabel": "Tyre Label"
+      },
+      "accordionTitles": {
+        "dimensions": "DIMENSIONS",
+        "powertrain": "POWERTRAIN",
+        "fuelEfficiency": "FUEL EFFICIENCY",
+        "tyreInformation": "TYRE INFORMATION"
+      }
+    },
+    "accessories": {
+      "exterior": {
+        "hoodDeflector": {
+          "name": "Hood Deflector",
+          "description": "Protects the hood from road debris and insects"
+        },
+        "alloyWheels": {
+          "name": "Alloy Wheels & Fender Flares",
+          "description": "Enhanced wheel design with protective fender flares"
+        },
+        "sideSteps": {
+          "name": "Side Steps",
+          "description": "Convenient side steps with TIVOLI branding"
+        },
+        "roofSpoiler": {
+          "name": "Roof Spoiler",
+          "description": "Aerodynamic roof spoiler with integrated brake light"
+        }
+      },
+      "interior": {
+        "ladyPackage": {
+          "name": "TIVOLI LADY PACKAGE",
+          "description": "Premium red leather accessories collection"
+        },
+        "airPurifier": {
+          "name": "AIR PURIFIER +",
+          "description": "Advanced air purification system"
+        },
+        "alloyPedal": {
+          "name": "ALLOY SPORTS PEDAL +",
+          "description": "Sporty alloy pedal covers"
+        }
+      }
+    },
+    "socialMedia": {
+      "post1": "Unique design, unstoppable confidence",
+      "post2": "My 1st SUV, #TIVOLI",
+      "post3": "Explore the Tivoli's simplistic and attractive design"
+    },
+    "features": {
+      "smartStyle": {
+        "title": "Smart Style",
+        "description": "Spot-On for Urban Life"
+      },
+      "iconicExterior": {
+        "title": "Iconic Exterior",
+        "description": "Compact but Attractive"
+      },
+      "functionalInterior": {
+        "title": "Functional Interior",
+        "description": "Fully-Equipped Space"
+      }
+    },
+    "hotspots": {
+      "headlight": {
+        "title": "LED Headlights",
+        "description": "Advanced LED lighting technology"
+      },
+      "grille": {
+        "title": "Signature Grille",
+        "description": "Distinctive front grille design"
+      },
+      "fogLights": {
+        "title": "Fog Lights",
+        "description": "Enhanced visibility in all conditions"
+      },
+      "alloyWheels": {
+        "title": "Alloy Wheels",
+        "description": "Sporty multi-spoke design"
+      },
+      "roofRails": {
+        "title": "Roof Rails",
+        "description": "Functional roof rail system"
+      },
+      "interior": {
+        "steeringWheel": {
+          "title": "Multi-Function Steering Wheel",
+          "description": "Premium leather-wrapped steering wheel with integrated controls",
+          "content": {
+            "title": "Deluxe 10.25\" full colour LCD cluster",
+            "subtitle": "10.25\" colour TFT-LCD cluster"
+          }
+        },
+        "infotainment": {
+          "title": "9\" HD Navigation",
+          "description": "Advanced infotainment system with HD navigation",
+          "content": {
+            "title": "Front dual zone auto air conditioning system",
+            "subtitle": "Front dual zone auto air conditioning",
+            "texts": {
+              "auto": "Front dual zone auto air conditioning system",
+              "manual": "Manual air conditioning"
+            }
+          }
+        },
+        "climateControl": {
+          "title": "Front Dual Zone Auto Air Conditioning System",
+          "description": "Independent temperature control for driver and passenger",
+          "content": {
+            "title": "9\" HD Navigation",
+            "subtitle": "9\" HD Navigation"
+          }
+        },
+        "passengerSeat": {
+          "title": "Reclining Seat (2nd-row)",
+          "description": "Comfortable and supportive seats with premium materials",
+          "content": {
+            "title": "Reclining Seat (2nd-row)",
+            "subtitle": "Comfort & Style Combined"
+          }
+        }
+      }
+    },
+    "colors": {
+      "grandWhite": "Grand White",
+      "latteGreige": "Latte Greige",
+      "steelGrey": "Steel Grey",
+      "midnightBlack": "Midnight Black",
+      "oceanBlue": "Ocean Blue"
+    }
+  },
+  "brandStory": {
+    "title": "Brand Story",
+    "subtitle": "Our journey and vision",
+    "hero": {
+      "title": "Enjoy with Confidence",
+      "learnMore": "Learn more"
+    },
+    "statement": {
+      "title": "OF JOY",
+      "subtitle": "At KGM, We define cars as a source"
+    },
+    "lifestyle": {
+      "title": "ENJOYMENT",
+      "subtitle": "in Every Journey with Mobility",
+      "paragraph1": "From the anticipation before the drive, the comfort and happiness during the journey, to the satisfaction upon arrival, and the cherished memories at the destination.",
+      "paragraph2": "KGM is dedicated to making every moment you spend with your car enjoyable."
+    },
+    "diverseLifestyles": {
+      "title": "FINDING JOY",
+      "through": "through",
+      "subtitle": "Diverse Lifestyles",
+      "paragraph": "Whether you seek simple happiness with your family, enjoy your freedom alone, strive for a sophisticated life in a busy city, or relish outdoor adventures on weekends, KGM aims to enhance your joy and ensure it is never interrupted, anytime, anywhere."
+    },
+    "safetyStatement": {
+      "title": "SAFETY",
+      "subtitle": "The beginning of",
+      "enjoyment": "ENJOYMENT"
+    },
+    "benefit": {
+      "sectionTitle": "BRAND ESSENCE & WORK WAY",
+      "brandEssence": "BRAND ESSENCE",
+      "workWay": "WORK WAY",
+      "creativity": {
+        "title": "CREATIVITY",
+        "brandEssence": "Creative products that offer\nNew and unique capabilities",
+        "workWay": "A work culture of always\nSeeking out new innovations"
+      },
+      "practicality": {
+        "title": "PRACTICALITY",
+        "brandEssence": "Practical products that\nSatisfy diverse lifestyles",
+        "workWay": "Implementing optimal space\nEfficiency and convenient,\nIntuitive usability"
+      },
+      "enjoyment": {
+        "title": "ENJOYMENT",
+        "brandEssence": "Providing enjoyable experiences\nIn every moment of mobility",
+        "workWay": "Delivering excellent aesthetic and\nFunctional UI/UX and customer\n-tailored customization"
+      },
+      "safety": {
+        "title": "SAFETY",
+        "brandEssence": "Ensuring structural and technical\nsafety for passengers",
+        "workWay": "Offering robust vehicle bodies\nAnd reliable quality, developing\nAdvanced safety ADAS"
+      }
+    },
+    "essenceVideo": {
+      "title": "Enjoy with Confidence",
+      "paragraph1": "From the many small daily joys in the city",
+      "paragraph2": "To the diverse outdoor experiences in nature,",
+      "paragraph3": "KGM strives to provide mobility that allows customers to confidently enjoy every moment of any lifestyle,",
+      "paragraph4": "offering more reliable safety and intuitive, convenient practicality, differentiating itself from other brands."
+    },
+    "confidence": {
+      "title": "Enjoy with Confidence",
+      "subtitle": "Reasons to have Confidence in KGM",
+      "differently": {
+        "title": "DIFFERENTLY",
+        "description": "We pursue unique and robust designs that differentiate us from competitors."
+      },
+      "safely": {
+        "title": "SAFELY",
+        "description": "We implement various systems to prevent accidents and build sturdy vehicle bodies to protect passengers."
+      },
+      "freely": {
+        "title": "FREELY",
+        "description": "We offer a practical and creative lineup and customization options that satisfy diverse lifestyles."
+      }
+    },
+    "designPhilosophy": {
+      "robustArchitecture": {
+        "title": "Robust Architecture",
+        "description": "We move beyond simple forms, pursuing beauty in robust structures and detailed aesthetics."
+      },
+      "vibrantContrast": {
+        "title": "Vibrant Contrast",
+        "description": "We express the essence of strength through contrasts in color, texture, and form."
+      },
+      "unexpectedDelight": {
+        "title": "Unexpected Delight",
+        "description": "We design with value beyond transportation, providing joy and inspiration to customers."
+      },
+      "communionWithNature": {
+        "title": "Communion with Nature",
+        "description": "We harmonize with nature, providing emotional value to our customers."
+      }
+    },
+    "manifestoContent": {
+      "title": "KGM is evolving",
+      "subtitle": "Enjoy with Confidence",
+      "learnMore": "Learn more",
+      "paragraph1": "We are transforming into a company that satisfies diverse urban and outdoor lifestyles with practical, creative, and safe mobility solutions, satisfying and bringing joy to our customers.",
+      "paragraph2": "The new value system was developed to communicate KGM's direction both internally and externally, provide guidelines for mid-to long-term strategies, and encourage changes in employee behavior, ultimately aiming to shift consumer brand perception.",
+      "enjoyWithConfidence": "Enjoy with Confidence"
+    },
+    "journeyContent": {
+      "title": "ENJOYMENT",
+      "subtitle": "in Every Journey with Mobility",
+      "paragraph1": "From the anticipation before the drive, the comfort and happiness during the journey, to the satisfaction upon arrival, and the cherished memories at the destination.",
+      "paragraph2": "KGM is dedicated to making every moment you spend with your car enjoyable."
+    },
+    "safetyValues": {
+      "title": "A Non-Negotiable",
+      "subtitle": "Value. Safety",
+      "protectingCustomers": {
+        "title": "Protecting Our Customers' Joy",
+        "description": "For KGM, safety is an uncompromisable value that protects both the physical well-being of passengers and their enjoyment with the car. We prevent accidents with advanced driver assistance systems and ensure safety with robust vehicle bodies and reliable quality, doing our utmost to keep customers safe even through unforeseen incidents."
+      },
+      "protectingEmployees": {
+        "title": "Protecting Our Employees' Joy",
+        "description": "We create a safe working environment where every employee can work with confidence and pride, contributing to the satisfaction and well-being of all."
+      }
+    }
+  },
+  "heritage1954": {
+    "title": "Heritage 1954",
+    "subtitle": "Our journey and vision",
+    "hero": {
+      "title": "Heritage 1954",
+      "description1": "A company that has always pursued 'firsts' in history.",
+      "description2": "KGM, the first Korean company to export cars and the pioneer of the Korean RV market, will move forward with our valued customers for the next 100 years.",
+      "enjoyWithConfidence": "Enjoy with Confidence",
+      "productHistoryView": "KGM Product History View",
+      "corporateHistoryView": "KGM Corporate History View"
+    },
+    "productHistory": {
+      "heritage": "HERITAGE",
+      "year": "1954",
+      "productHistory": "PRODUCT HISTORY",
+      "technicalTerms": {
+        "horsepower": "horsepower",
+        "diesel": "Diesel",
+        "gasoline": "Gasoline",
+        "seats": "Seats",
+        "ton": "Ton",
+        "litres": "litres",
+        "kg": "kg",
+        "cc": "cc",
+        "dohc": "DOHC",
+        "efi": "EFI",
+        "gdi": "GDI",
+        "kw": "kW",
+        "ps": "ps",
+        "electrified": "Electrified"
+      }
+    },
+    "corporateHistory": {
+      "title": "A master spirit of Korea's first title",
+      "historicalImages": "Historical Images",
+      "periodNames": {
+        "19541986": "1954-1986",
+        "19871997": "1987-1997",
+        "19982022": "1998-2022",
+        "2023NOW": "2023-NOW"
+      },
+      "periods": {
+        "foundationEra": "Foundation Era - Building Korea's automotive industry",
+        "expansionEra": "Expansion Era - International partnerships and growth",
+        "globalEra": "Global Era - Worldwide presence and innovation",
+        "kgmEra": "KGM Era - New brand identity and future vision"
+      },
+      "milestones": {
+        "195401": "Established Ha Dong-Hwan Motor Workshop",
+        "196212": "Launched Ha Dong-Hwan Motors Co., Ltd.",
+        "196307": "Merged Dongbang Motors Co., Ltd.",
+        "196705": "Cooperative agreement with Shinjin Motors Co., Ltd.",
+        "196708": "First exported large buses to Brunei in Korea",
+        "196911": "Produced the first civilian-purpose four-wheel drive vehicles in South Korea",
+        "197011": "Produced the wheel disc",
+        "197404": "Co-established Shinjin Jeep Motor Co., Ltd. with AMC",
+        "197410": "Developed both hard top and soft top jeeps",
+        "197702": "Company name changed to Dong-A Motor Co., Ltd.",
+        "197712": "Completed Bupyeong Plant construction",
+        "197903": "Company name changed to Shinjin Motors Co., Ltd.",
+        "197912": "Completed Pyeongtaek Plant construction",
+        "198103": "Company name changed to Gohwa Motor Inc.",
+        "198303": "Registered the Korando trademark",
+        "198404": "First exported high-speed buses to Libya, Sudan in Korea",
+        "198412": "Merged Dong-A Motor Co., Ltd.",
+        "198508": "First developed house trailer in Korea",
+        "198608": "Exported Korando to Japan",
+        "198611": "Acquired by Ssangyong group"
+      }
+    }
+  },
+  "philosophy": {
+    "title": "PHILOSOPHY",
+    "subtitle": "KGM is a family company of the KG Group.",
+    "values": {
+      "slogan": "We think great.",
+      "brandSlogan": "thinKGreat",
+      "value1": {
+        "title": "KG exists to become a respected company that makes everyone proud.",
+        "description": "Our purpose is to earn respect by providing new value that contributes to human and societal advancement, and to be an organization that our members can be proud of."
+      },
+      "value2": {
+        "title": "KG maintains a balance between sustainability and growth.",
+        "description": "We achieve our vision with meaningful persistence and ethical, positive growth."
+      },
+      "value3": {
+        "title": "KG pursues innovation to create unique and differentiated values.",
+        "description": "We consistently challenge ourselves with new methods that we have never tried before, and seek novelty to create things that no one has ever thought of."
+      },
+      "value4": {
+        "title": "KG has confidence with courtesy based on a sense of responsibility.",
+        "description": "We clearly understand our responsibilities and deliver results that reflect the value we provide."
+      }
+    }
+  },
+  "heritage": {
+    "title": "Heritage 1954",
+    "subtitle": "Our rich history"
+  },
+  "recycling": {
+    "hero": {
+      "title": "RECYCLING",
+      "description": "Committed to environmental responsibility through sustainable practices and circular economy principles"
+    },
+    "content": {
+      "introduction": {
+        "paragraph1": "KGM (formerly SsangYong) is committed to developing eco-friendly products by improving recycling rates and limiting hazardous heavy metals. These efforts aim to minimize environmental pollution from the production stage to the vehicle disposal phase.",
+        "paragraph2": "Vehicles developed under our procedures meet EU ELV (End-of-Life Vehicle) standards, with ongoing compliance through updates and maintenance."
+      },
+      "sections": {
+        "automotiveRecycling": {
+          "title": "Automotive Recycling",
+          "content": "KGM adheres to the EU End-of-Life Vehicle Directive (2000/53/EC) to minimize environmental issues. We approach this from product development, including using optimal materials for recyclability, designing vehicles for easy dismantling, and considering recycling and recovery during disposal. Since 2015, our vehicles have a recycling and recovery rate of over 95%."
+        },
+        "heavyMetals": {
+          "title": "Restriction of Four Heavy Metals",
+          "content": "KGM is committed to reducing environmental pollution from heavy metals. We joined the IMDS (International Material Data System) in 2007, a global system for monitoring materials, weights, and substances in vehicle parts. Since 2015, we have systematically managed the use of four major heavy metals (lead, mercury, cadmium, and hexavalent chromium) by integrating IMDS with our proprietary KRMS (KGM Recycle & Material Management System)."
+        },
+        "dismantlingInfo": {
+          "title": "Dismantling Information for End-of-Life Vehicles",
+          "content": "KGM has been a member of the IDIS (International Dismantling Information System) since 2001, providing dismantling information for all vehicles produced to promote environmentally friendly vehicle dismantling."
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with us"
+  },
+  "footer": {
+    "home": "HOME",
+    "top": "TOP",
+    "philosophy": "PHILOSOPHY",
+    "cookiesPolicy": "COOKIES POLICY",
+    "siteMap": "SITE MAP",
+    "copyright": "COPYRIGHT © KG MOBILITY Corp. ALL RIGHTS RESERVED."
+  },
+  "quickMenu": {
+    "catalog": "CATALOG",
+    "ownersManual": "OWNER'S MANUAL",
+    "asManual": "A/S MANUAL",
+    "partsCatalog": "PARTS CATALOG"
+  },
+  "brandSection": {
+    "title": "Brand",
+    "subtitle": "KGM is transforming, driven by a bold new vision.",
+    "story": "STORY",
+    "learnMore": "Learn more >",
+    "kgmSteering": "KGM",
+    "steering": "Steering",
+    "heritage1954": "HERITAGE 1954",
+    "quick": "QUICK"
+  },
+  "insideKGM": {
+    "subtitle": "We offer a variety of mobility experiences.",
+    "title": "Inside KGM",
+    "slides": {
+      "arresEvx": {
+        "title": "ARRES EVX",
+        "description": "Thrilling yet serene, powerful yet elegant"
+      },
+      "enjoyWithConfidence": {
+        "title": "KGM Enjoy with Confidence",
+        "description": "Enjoy every moment with confidence"
+      },
+      "beautyOfPracticality": {
+        "title": "The Beauty of Practicality",
+        "description": "Where style meets functionality"
+      },
+      "innovativeExperience": {
+        "title": "Innovative Experience",
+        "description": "An innovative experience with cutting-edge technology"
+      },
+      "thisIsKGM": {
+        "title": "This is KGM",
+        "description": "Discover the essence of KGM"
+      },
+      "nightDrive": {
+        "title": "Night Drive",
+        "description": "Experience the city lights"
+      },
+      "premiumInterior": {
+        "title": "Premium Interior",
+        "description": "Luxury meets technology"
+      },
+      "advancedTechnology": {
+        "title": "Advanced Technology",
+        "description": "State-of-the-art features"
+      },
+      "futureOfMobility": {
+        "title": "Future of Mobility",
+        "description": "Shaping the future of transportation"
+      }
+    },
+    "quick": "QUICK"
+  },
+  "quickAccess": {
+    "catalog": "CATALOG",
+    "ownersManual": "OWNER'S MANUAL",
+    "serviceManual": "SERVICE MANUAL",
+    "partsCatalog": "PARTS CATALOG",
+    "quick": "QUICK"
+  },
+  "mussoGrand": {
+    "hero": {
+      "title": "MUSSO GRAND",
+      "subtitle": "Power & Performance",
+      "description": "Strong on Safety, With a Longer Deck, Drive like City Car"
+    },
+    "features": {
+      "strongSafety": {
+        "title": "Strong on Safety",
+        "description": "Strong on Strength"
+      },
+      "longerDeck": {
+        "title": "With a Longer Deck",
+        "description": "Easier Loading"
+      },
+      "cityCar": {
+        "title": "Drive like City Car",
+        "description": "Deliver like Truck"
+      }
+    },
+    "safety": {
+      "title": "Safety",
+      "subtitle": "Advanced Safety Features",
+      "structuralRigidity": {
+        "title": "Structural rigidity",
+        "subtitle": "Quadruple-layered frame",
+        "description": "Unlike a monocoque body type vehicle, the engine and suspension are mounted on a steel frame; this ensures safety upon impacts while also optimizing noise control from external sources."
+      },
+      "safetyDesign": {
+        "title": "Safety-prioritized design",
+        "subtitle": "78% High-strength steel",
+        "description": "By applying the HPF (Hot Press Forming) process with high-strength (44%) and ultra-high-strength (34%) steel plates, the rigidity of the body and passenger safety have been maximized."
+      },
+      "airbags": {
+        "title": "Keeping all occupants safe",
+        "subtitle": "7 Airbags",
+        "description": "The vehicle is equipped with two airbags for the driver and front passenger, one knee airbag for the driver, two side airbags in the first row, and two curtain airbags for the second row."
+      },
+      "esc": {
+        "title": "Secured safety in all driving conditions",
+        "subtitle": "Electronic Stability Control (ESC)",
+        "description": "ESC provides various features to prevent accidents in advance by ensuring stable vehicle posture control in a variety of driving conditions."
+      }
+    },
+    "convenience": {
+      "title": "Convenience",
+      "subtitle": "Smart Features for Modern Life",
+      "drivingComfort": {
+        "title": "Driving comfort",
+        "description": "Enhanced driving experience with advanced comfort features"
+      },
+      "cargoSpace": {
+        "title": "Cargo space efficiency",
+        "subtitle": "Longer deck for easier loading",
+        "description": "Optimized cargo space for maximum utility"
+      },
+      "airQuality": {
+        "title": "Air quality control",
+        "subtitle": "Front dual zone auto air conditioning system",
+        "description": "Maintain perfect climate control for all passengers"
+      }
+    },
+    "performance": {
+      "title": "Performance",
+      "subtitle": "Power and Efficiency Combined",
+      "engine": {
+        "title": "Powerful engine",
+        "description": "Reliable performance for all driving conditions"
+      },
+      "transmission": {
+        "title": "Smooth transmission",
+        "description": "Seamless gear shifting for optimal performance"
+      },
+      "handling": {
+        "title": "Agile response handling",
+        "description": "Responsive steering and suspension for confident driving"
+      }
+    },
+    "exterior": {
+      "title": "Exterior",
+      "subtitle": "Design That Stands Out",
+      "views": {
+        "front": "Front view",
+        "side": "Side view",
+        "rear": "Rear view"
+      }
+    },
+    "specifications": {
+      "title": "DIMENSIONS",
+      "subtitle": "Technical Specifications",
+      "dimensions": {
+        "overallLength": "Overall Length",
+        "overallWidth": "Overall Width",
+        "overallHeight": "Overall Height",
+        "wheelbase": "Wheelbase"
+      }
+    }
+  },
+  "torres": {
+    "hero": {
+      "title": "TORRES",
+      "subtitle": "Adventure Awaits",
+      "description": "Spirit of Adventure, Bold Exterior, Smart Interior"
+    },
+    "features": {
+      "spiritOfAdventure": {
+        "title": "Spirit of Adventure",
+        "description": "Drive with Confidence"
+      },
+      "boldExterior": {
+        "title": "Bold Exterior",
+        "description": "Powered by Toughness"
+      },
+      "smartInterior": {
+        "title": "Smart Interior",
+        "description": "Intuitive & Digital"
+      }
+    },
+    "safety": {
+      "aeb": {
+        "title": "Autonomous Emergency Braking (AEB)",
+        "subtitle": "ADAS System",
+        "description": "AEB warns the driver of a potential frontal collision while driving and automatically activates the brakes to prevent an accident."
+      },
+      "tsa": {
+        "title": "Trailer Stability Assist (TSA)",
+        "subtitle": "Safer steering when towing",
+        "description": "When towing a trailer or caravan, TSA stabilizes steering control in response to side-to-side swaying caused by harsh road conditions."
+      },
+      "mcb": {
+        "title": "Multi Collision Brake (MCB)",
+        "subtitle": "Advanced ESC system",
+        "description": "After an accident occurs, the MCB prevents secondary accidents through automatic emergency braking when the driver is temporarily unable to control the vehicle."
+      },
+      "enhanced": {
+        "title": "Enhanced Safety Systems",
+        "subtitle": "Additional safety features",
+        "description": "Comprehensive safety features including advanced driver assistance systems and protective technologies for maximum peace of mind."
+      }
+    },
+    "convenience": {
+      "tailgate": {
+        "title": "Internal tailgate opening button",
+        "subtitle": "A convenient space when exploring the wild",
+        "description": "The tailgate includes an internal button that allows you to open and close the tailgate from inside the vehicle, making it convenient for camping in the car."
+      },
+      "monitoring": {
+        "title": "3D 360° around view monitoring system",
+        "subtitle": "Blind spot monitoring",
+        "description": "Four cameras on the exterior monitor parking and driving, helpfully providing a clear view of the rear and ground areas."
+      },
+      "seats": {
+        "title": "8-way power-adjustable front seats",
+        "subtitle": "Driving comfort",
+        "description": "Featuring an 8-way powered seat with 2-way lumbar support (for adjusting the lower backrest), providing a comfortable driving environment tailored to anyone's needs."
+      },
+      "cargo": {
+        "title": "Seating configurations",
+        "subtitle": "Best-in-class luggage space",
+        "description": "Offering a class-leading cargo space of 1,662 litres, suitable for various outdoor activities."
+      },
+      "airConditioning": {
+        "title": "Front dual zone auto air conditioning system",
+        "subtitle": "Air quality control",
+        "description": "Including a micro air conditioning filter, auto defogging, and after-blow functions for a more comfortable ride."
+      },
+      "moreFeatures": "More features"
+    },
+    "performance": {
+      "awd": {
+        "title": "Active AWD",
+        "subtitle": "Four-wheel drive system",
+        "description": "Real-time monitoring and optimal power distribution for efficient and safe driving."
+      },
+      "engine": {
+        "title": "1.5 litre GDI turbo engine",
+        "subtitle": "Powerful engine",
+        "description": "163 PS at 5,000-5,500 rpm and 280 Nm torque at 1,500-4,000 rpm for lively performance."
+      },
+      "transmission": {
+        "title": "'Shift by Wire' Toggle Switch",
+        "subtitle": "Toggle switch type",
+        "description": "Easy control with AISIN 6-speed transmission for proven durability and reliable shifting."
+      },
+      "idleStop": {
+        "title": "Idle Stop & Go system",
+        "subtitle": "Drive economically",
+        "description": "Automatic engine shut-off when stationary to improve fuel efficiency. (can be switched on/off)"
+      },
+      "paddleShifts": {
+        "title": "Paddle shifts",
+        "subtitle": "Drive agility",
+        "description": "Manual mode shifting with steering wheel controls for quick response to driving situations."
+      },
+      "epb": {
+        "title": "Electronic Parking Brake",
+        "subtitle": "EPB",
+        "description": "Toggle-switch type with auto hold function."
+      },
+      "drivingModes": {
+        "title": "Driving modes",
+        "subtitle": "Dynamic driving",
+        "description": "Optimal performance with NORMAL/SPORT/WINTER modes integrating steering and suspension."
+      }
+    },
+    "exterior": {
+      "frontView": "TORRES front view",
+      "colorBoard": "Color Board",
+      "vr360": "360° VR",
+      "dandyBlue": "Dandy Blue",
+      "disclaimer": "* Images of this vehicle are for reference only and may differ from the actual product.",
+      "colorPreference": "* Each color is arranged from left to right in order of customer preference."
+    },
+    "specifications": {
+      "title": "DIMENSIONS",
+      "subtitle": "Technical Specifications",
+      "dimensions": {
+        "overallLength": "Overall Length",
+        "overallWidth": "Overall Width",
+        "overallHeight": "Overall Height",
+        "wheelbase": "Wheelbase"
+      }
+    },
+    "sections": {
+      "spiritHeritage": "SPIRIT & HERITAGE OF KGM",
+      "exterior": "EXTERIOR",
+      "interior": "INTERIOR",
+      "featuresColors": "FEATURES & COLORS",
+      "safety": "SAFETY",
+      "safetyFeatures": "FEATURES",
+      "convenience": "CONVENIENCE",
+      "convenienceSubtitle": "FOR YOUR SMARTER, EASIER AND COMFORTABLE MOVE",
+      "performance": "PERFORMANCE",
+      "performanceSubtitle": "POWERFUL, DYNAMIC MOVE",
+      "specification": "SPECIFICATION",
+      "accessory": "ACCESSORY",
+      "socialMedia": "TORRES IN SOCIAL MEDIA"
+    },
+    "interior": {
+      "panoramicDisplay": "MODERN & SLEEK 12.3\" PANORAMIC DISPLAY",
+      "driversPerspective": "Driver's Perspective with Panoramic Display",
+      "charcoalBlack": "Charcoal Black Interior",
+      "charcoalBlackName": "CHARCOAL BLACK",
+      "rawhideBrown": "Rawhide Brown Interior",
+      "rawhideBrownName": "RAWHIDE BROWN",
+      "tealGrey": "Teal Grey & Greige White 2-Tone Interior",
+      "tealGreyName": "TEAL GREY & GREIGE WHITE 2-TONE",
+      "disclaimer": "* The photos and descriptions are for reference only and may differ from the actual product.",
+      "driversPerspectiveAlt": "Driver's Perspective with Panoramic Display",
+      "charcoalBlackAlt": "Charcoal Black Interior",
+      "rawhideBrownAlt": "Rawhide Brown Interior",
+      "tealGreyAlt": "Teal Grey & Greige White 2-Tone Interior",
+      "tivoliAlt": "TIVOLI"
+    },
+    "specification": {
+      "title": "TORRES Specification",
+      "dimensions": "DIMENSIONS",
+      "powertrain": "POWERTRAIN",
+      "fuelEfficiency": "FUEL EFFICIENCY",
+      "tyreInformation": "TYRE INFORMATION",
+      "drivenWheels": "DRIVEN WHEELS",
+      "transmission": "TRANSMISSION",
+      "overallLength": "Overall length (mm)",
+      "overallWidth": "Overall width (mm)",
+      "overallHeight": "Overall height (mm)",
+      "wheelbase": "Wheelbase (mm)",
+      "treadFront": "Tread Front (mm)",
+      "treadRear": "Tread Rear (mm)",
+      "overhangFront": "Overhang Front (mm)",
+      "overhangRear": "Overhang Rear (mm)",
+      "groundClearance": "Ground clearance (mm)",
+      "turningRadius": "Turning radius (m)",
+      "grossVehicleWeight": "Gross vehicle weight (kg)",
+      "kerbWeight": "Kerb weight (kg)",
+      "trailerWeightBraked": "Trailer weight Braked (kg)",
+      "trailerWeightUnbraked": "Trailer weight Unbraked (kg)",
+      "twoWheelDrive": "2WD",
+      "fourWheelDrive": "4WD",
+      "sixSpeedManual": "6MT",
+      "sixSpeedAuto": "6AT",
+      "engineType": "Engine type",
+      "displacement": "Displacement",
+      "maxPower": "Max Power",
+      "maxTorque": "Max Torque",
+      "driveType": "Drive Type",
+      "city": "City",
+      "highway": "Highway",
+      "combined": "Combined (l/100km)",
+      "co2Emissions": "CO2 Emissions",
+      "frontTyre": "Front Tyre",
+      "rearTyre": "Rear Tyre",
+      "spareTyre": "Spare Tyre",
+      "emission": "Emission",
+      "fuel": "Fuel",
+      "fuelTank": "Fuel tank (ℓ)",
+      "capacity": "Capacity (cc)",
+      "boreStroke": "Bore x Stroke (mm)",
+      "compressionRatio": "Compression ratio",
+      "numberOfCylinders": "Number of cylinders",
+      "maxPowerKw": "Max. power (kW/rpm)",
+      "maxPowerPs": "Max. power (ps/rpm)",
+      "maxTorqueNm": "Max. torque (Nm/rpm)",
+      "maxTorqueKgm": "Max. torque (kg.m/rpm)",
+      "maxSpeed": "Max. speed (km/h)",
+      "co2Combined": "CO2 (combined, g/km)",
+      "urban": "Urban (l/100km)",
+      "extraUrban": "Extra Urban (l/100km)",
+      "phase1": "Phase 1 (Low phase, l/100km)",
+      "phase2": "Phase 2 (Mid phase, l/100km)",
+      "phase3": "Phase 3 (High phase, l/100km)",
+      "phase4": "Phase 4 (Extra High phase, l/100km)",
+      "maker": "Maker",
+      "size": "Size",
+      "productInformationSheet": "Product Information Sheet",
+      "tyreLabel": "Tyre Label",
+      "fuelEconomyNote": "The fuel economy can vary according to road conditions or driver's habits.",
+      "technicalDataNote": "The above technical data can vary slightly by regional certification requirements or sales specifications.",
+      "specificationAlt": "TORRES Specification"
+    },
+    "accessory": {
+      "exterior": "EXTERIOR",
+      "interior": "INTERIOR",
+      "wheelArchGarnish": "Wheel Arch Garnish & Door Garnish",
+      "sideSteps": "Side Steps",
+      "cPillarStorage": "C-Pillar Storage Box",
+      "crossBar": "Cross Bar",
+      "wheelArchGarnishDesc": "Protective wheel arch and door garnishes for enhanced style",
+      "sideStepsDesc": "Convenient side steps with textured non-slip surface",
+      "cPillarStorageDesc": "Lockable storage box integrated into C-pillar design",
+      "crossBarDesc": "Roof rack cross bars for additional cargo carrying capacity",
+      "doorSpotLamp": "Door Spot Lamp & Door Scuff Lamp",
+      "doorSpotLampDesc": "Illuminated door projection and scuff protection",
+      "alloySportsPedal": "Alloy Sports Pedal",
+      "alloySportsPedalDesc": "Sporty alloy pedal covers with textured grip",
+      "airMat": "Air Mat",
+      "airMatDesc": "Inflatable air mattress for comfortable car camping",
+      "multiCurtain": "Multi Curtain",
+      "multiCurtainDesc": "Privacy curtains and storage organizers for interior comfort"
+    },
+    "socialMedia": {
+      "post1": "TORRES Social Media Post 1",
+      "post1Title": "THE NEW TORRES | Overall",
+      "post2": "TORRES Social Media Post 2",
+      "post2Title": "THE NEW TORRES | Authentic Ocean Drive",
+      "post3": "TORRES Social Media Post 3",
+      "post3Title": "THE NEW TORRES | Mysterious Forest"
+    },
+    "buttons": {
+      "catalog": "CATALOG",
+      "accessory": "ACCESSORY",
+      "open": "Open",
+      "more": "More",
+      "top": "TOP"
+    }
+  },
+  "torresEvxPage": {
+    "hero": {
+      "title": "TORRES EVX",
+      "subtitle": "The Best of Both Worlds - EV & SUV",
+      "description": "Unique Exterior, Finest Interior, Smart & Convenient",
+      "catalog": "CATALOG",
+      "accessories": "ACCESSORY"
+    },
+    "features": {
+      "uniqueExterior": {
+        "title": "Unique Exterior",
+        "subtitle": "EYE-CATCHING DESIGN",
+        "description": "Outstanding Design"
+      },
+      "finestInterior": {
+        "title": "Finest Interior",
+        "description": "Safe & Comfortable"
+      },
+      "smartConvenient": {
+        "title": "Smart & Convenient",
+        "description": "Cutting-Edge Technology"
+      }
+    },
+    "safety": {
+      "title": "Safety",
+      "subtitle": "Advanced Driver Assistance Systems",
+      "comprehensive": {
+        "title": "Keeping you safe from every angle",
+        "description": "Comprehensive safety features for maximum protection"
+      },
+      "tsa": {
+        "title": "Safer steering when towing",
+        "subtitle": "Trailer Stability Assist (TSA)",
+        "description": "When towing a trailer or caravan, TSA stabilizes steering control in response to side-to-side swaying caused by harsh road conditions."
+      },
+      "esc": {
+        "title": "Secured safety in all driving conditions",
+        "subtitle": "Electronic Stability Control (ESC)",
+        "description": "ESC provides various features to prevent accidents in advance by ensuring stable vehicle posture control in a variety of driving conditions."
+      },
+      "mcb": {
+        "title": "Advanced ESC system",
+        "subtitle": "Multi Collision Brake (MCB)",
+        "description": "After an accident occurs, the MCB prevents secondary accidents through automatic emergency braking when the driver is temporarily unable to control the vehicle."
+      },
+      "highStrengthSteel": {
+        "title": "Best-in-class safety-oriented design",
+        "subtitle": "79% high-strength steel",
+        "description": "The use of high-strength steel (79%) and ultra-high-strength steel (40%) applied through the Hot Press Forming (HPF) process maximizes the vehicle's body rigidity and passenger safety."
+      },
+      "airbags": {
+        "title": "Including 1st-row far-side",
+        "subtitle": "7 Airbags",
+        "description": "The vehicle is equipped with two airbags for the driver and front passenger, one knee airbag for the driver, two side airbags in the first row, and two curtain airbags for the second row."
+      },
+      "enhanced": {
+        "title": "Enhanced Safety Systems",
+        "subtitle": "Additional safety features",
+        "description": "Comprehensive safety features including advanced driver assistance systems and protective technologies for maximum peace of mind."
+      }
+    },
+    "convenience": {
+      "title": "Convenience",
+      "subtitle": "Smart Features for Modern Life",
+      "evTechnology": {
+        "title": "Explore the outdoors with EV technology",
+        "description": "Advanced electric vehicle technology for sustainable adventure"
+      },
+      "tailgate": {
+        "title": "Internal tailgate opening button",
+        "subtitle": "Your base camp in the wild",
+        "description": "The tailgate includes an internal button that allows you to open and close the tailgate from inside the vehicle, making it convenient for camping in the car."
+      },
+      "monitoring": {
+        "title": "3D 360° around view monitoring system",
+        "subtitle": "Blind spot monitoring",
+        "description": "Four cameras on the exterior monitor parking and driving, helpfully providing a clear view of the rear and ground areas."
+      },
+      "seats": {
+        "title": "8-way power-adjustable front seats",
+        "subtitle": "Driving comfort",
+        "description": "Featuring an 8-way powered seat with 2-way lumbar support (for adjusting the lower backrest), providing a comfortable driving environment tailored to anyone's needs."
+      },
+      "cargo": {
+        "title": "Seating configurations",
+        "subtitle": "Best-in-class luggage space",
+        "description": "Offering a class-leading cargo space of 1,662 litres, suitable for various outdoor activities."
+      },
+      "airConditioning": {
+        "title": "Front dual temperature zone auto air conditioning system",
+        "subtitle": "Air quality control",
+        "description": "Includes a micro air conditioning filter, auto defogging, and after-blow functions for a more comfortable ride."
+      },
+      "petFriendly": {
+        "title": "Conditioning (cabin comfort) mode",
+        "subtitle": "Pet-friendly mode",
+        "description": "Special mode for keeping pets comfortable during travel."
+      },
+      "moreFeatures": "More features",
+      "open": "Open"
+    },
+    "performance": {
+      "title": "Performance",
+      "subtitle": "Electric Power and Efficiency",
+      "batterySpecs": {
+        "title": "Battery specs",
+        "subtitle": "LFP blade battery",
+        "description": "Focusing on EV battery safety, the next-generation 73.4 kWh lithium iron phosphate battery ensures excellent impact safety and charging efficiency through the latest cell-to-pack technology."
+      },
+      "performanceOptimization": {
+        "title": "Performance optimization",
+        "subtitle": "High-Voltage battery management system",
+        "description": "This system proactively prepares for temperatures starting from 8°C, maintaining optimal performance and preventing durability degradation due to battery aging. (10-year/1,000,000 km warranty)"
+      },
+      "powerManagement": {
+        "title": "Power management module",
+        "subtitle": "EV drive system",
+        "description": "Combined with a 152.2 kW motor and torque distribution reducer, this system provides a powerful driving experience."
+      },
+      "chargingRange": {
+        "title": "Charging and range",
+        "subtitle": "Maximum driving range on a single charge: 462 km (WLTP standard)",
+        "description": "When using a Level 2 or portable charger, the AVN system allows you to set the charging start and end times; with a Level 2 or fast charger, you can set a target charge level."
+      },
+      "electronicTransmission": {
+        "title": "Electronic transmission system with safety system",
+        "subtitle": "Electronic transmission system with safety system",
+        "description": "A safety system has been implemented to prevent accidents that could be caused by various malfunctions. (SBW applied)"
+      },
+      "regenerativeControl": {
+        "title": "Regenerative control",
+        "subtitle": "Paddle shifters",
+        "description": "The up/down shift controls on the steering wheel allow you to manage the regenerative braking with 3 different levels."
+      },
+      "epb": {
+        "title": "EPB",
+        "subtitle": "Electronic Parking Brake",
+        "description": "Toggle-switch type with auto hold"
+      }
+    },
+    "specifications": {
+      "title": "SPECIFICATION",
+      "subtitle": "Technical Specifications",
+      "dimensions": {
+        "drivenWheels": "DRIVEN WHEELS",
+        "transmission": "TRANSMISSION",
+        "type": "Type",
+        "overallLength": "Overall length (mm)",
+        "overallWidth": "Overall width (mm)",
+        "overallHeight": "Overall height (mm)",
+        "wheelbase": "Wheelbase (mm)",
+        "tread": "Tread",
+        "overhang": "Overhang",
+        "approachAngle": "Approach angle (degree)",
+        "departureAngle": "Departure angle (degree)",
+        "rampAngle": "Ramp angle (degree)",
+        "minimumGroundClearance": "Minimum ground clearance (mm)",
+        "minimumTurningRadius": "Minimum turning radius (m)",
+        "grossVehicleWeight": "Gross vehicle weight (kg)",
+        "kerbWeight": "Kerb weight (kg)",
+        "grossTrailerWeight": "Gross trailer weight"
+      },
+      "powertrain": {
+        "title": "POWERTRAIN",
+        "drivenWheels": "DRIVEN WHEELS",
+        "engineType": "Engine type",
+        "motorPower": "Motor power (kW)",
+        "motorTorque": "Motor torque (Nm)",
+        "maxSpeed": "Max. speed (km/h)",
+        "acceleration": "Acceleration (0-100 km/h, sec)",
+        "transmission": "Transmission",
+        "battery": "Battery",
+        "standardChargingTime": "Standard charging time (0 to 100%)",
+        "fastChargeTime": "Fast charge time (10% to 80%)",
+        "onboardChargerPower": "On-board charger power (kW)",
+        "capacity": "Capacity (kWh)",
+        "batteryVoltage": "Battery voltage (V)",
+        "maxPower": "Max. power",
+        "maxTorque": "Max. torque",
+        "accelerationTime": "Acceleration from 0 to 100 km/h (sec)",
+        "electricMotor": "Electric Motor",
+        "electricEnergyConsumption": "Electric energy consumption (Wh/km)",
+        "tyreInformation": {
+          "title": "TYRE INFORMATION",
+          "maker": "Maker",
+          "size": "Size",
+          "productInformationSheet": "Product Information Sheet",
+          "tyreLabel": "Tyre Label"
+        }
+      }
+    },
+    "exterior": {
+      "title": "EXTERIOR",
+      "spiritHeritage": "SPIRIT & HERITAGE OF KGM",
+      "front": "Front",
+      "rear": "Rear",
+      "frontView": "TORRES EVX front view+++++",
+      "dandyBlue": "TORRES in Dandy Blue - 2 TONE",
+      "colorBoard": "Color Board",
+      "vr360": "360° VR",
+      "dandyBlueColor": "Dandy Blue",
+      "referenceNote": "* Images of this vehicle are for reference only and may differ from the actual product.",
+      "colorPreferenceNote": "* Each color is arranged from left to right in order of customer preference.",
+      "views": {
+        "front": "Front view",
+        "side": "Side view",
+        "rear": "Rear view"
+      }
+    },
+    "interior": {
+      "title": "INTERIOR",
+      "subtitle": "EASY, SAFE AND CONVENIENT",
+      "featuresColors": "FEATURES & COLORS",
+      "driverPerspective": "Driver's Perspective with Panoramic Display",
+      "charcoalBlack": {
+        "title": "Charcoal Black Interior",
+        "subtitle": "CHARCOAL BLACK",
+        "note": "* The photos and descriptions are for reference only and may differ from the actual product."
+      },
+      "rawhideBrown": {
+        "title": "Rawhide Brown Interior",
+        "subtitle": "RAWHIDE BROWN",
+        "note": "* The photos and descriptions are for reference only and may differ from the actual product."
+      },
+      "tealGrey": {
+        "title": "Teal Grey & Greige White 2-Tone Interior",
+        "subtitle": "TEAL GREY & GREIGE WHITE 2-TONE",
+        "note": "* The photos and descriptions are for reference only and may differ from the actual product."
+      },
+      "top": "TOP"
+    },
+    "specialLineup": {
+      "loadingSpace": {
+        "title": "1,462 litres of loading space & maximum load of 300 kg",
+        "description": "Equipped with a vertical partition panel, allowing for safe and efficient storage"
+      },
+      "chargingDevice": {
+        "title": "In-cable control and protection device (IC-CPD)",
+        "description": "Simple, easy charging"
+      }
+    }
+  },
+  "contactUs": {
+    "hero": {
+      "title": "Contact",
+      "titleUs": "Us",
+      "description": "Get in touch with our team. We're here to help you with any questions about our vehicles, services, or support."
+    },
+    "form": {
+      "title": "Send us a Message",
+      "fields": {
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "phoneNumber": "Phone Number",
+        "serviceInterest": "Service Interest",
+        "subject": "Subject",
+        "message": "Message"
+      },
+      "placeholders": {
+        "fullName": "Your full name",
+        "email": "your.email@example.com",
+        "phone": "+212 5 22 123 456",
+        "selectService": "Select a service",
+        "subject": "What is this about?",
+        "message": "Tell us more about your inquiry..."
+      },
+      "services": {
+        "generalInquiry": "General Inquiry",
+        "vehicleSales": "Vehicle Sales",
+        "serviceMaintenance": "Service & Maintenance",
+        "partsAccessories": "Parts & Accessories",
+        "warrantyInformation": "Warranty Information",
+        "technicalSupport": "Technical Support",
+        "dealerInquiry": "Dealer Inquiry",
+        "other": "Other"
+      },
+      "sending": "Sending...",
+      "sendMessage": "Send Message",
+      "successMessage": "Thank you for your message! We will get back to you soon."
+    }
+  },
+  "bookTestDrive": {
+    "title": "Book your test drive",
+    "subtitle": "Which model would you like to test?",
+    "modelLabel": "Model",
+    "selectModel": "Select a model",
+    "personalInfoTitle": "Personal Information",
+    "personalInfoSubtitle": "We will contact you to confirm your appointment",
+    "lastNamePlaceholder": "Last Name",
+    "firstNamePlaceholder": "First Name",
+    "phonePlaceholder": "Phone",
+    "emailPlaceholder": "E-mail",
+    "messagePlaceholder": "Message",
+    "optional": "optional",
+    "submitButton": "SUBMIT",
+    "submitting": "Submitting...",
+    "successTitle": "Thank you!",
+    "successMessage": "We will contact you to confirm your appointment.",
+    "privacyText": "By submitting this form, you accept our privacy policy",
+    "errors": {
+      "modelRequired": "Model selection is required",
+      "lastNameRequired": "Last name is required",
+      "lastNameMin": "Last name must be at least 2 characters",
+      "firstNameRequired": "First name is required",
+      "firstNameMin": "First name must be at least 2 characters",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number",
+      "emailInvalid": "Please enter a valid email address",
+      "submitError": "An error occurred. Please try again.",
+      "connectionError": "Connection error. Please check your connection and try again."
+    }
+  }
+}

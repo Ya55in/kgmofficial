@@ -1,0 +1,23 @@
+# Set index file for directory access
+DirectoryIndex index.html
+
+# Rewrite engine for nested paths
+RewriteEngine On
+RewriteBase /models/
+
+# Rewrite /models/torres to /models/torres.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)$ $1.html [L]
+
+# If accessing the directory itself (/models/), serve index.html
+RewriteCond %{REQUEST_URI} ^/models/$
+RewriteRule ^ index.html [L]
+
+
+
+
+
+
+
+
