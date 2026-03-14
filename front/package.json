@@ -7,13 +7,7 @@
     "dev": "next dev",
     "build": "next build && node scripts/postbuild.js",
     "start": "next start",
-    "lint": "next lint",
-    "migrate:media": "tsx scripts/migrate-media-to-supabase.ts",
-    "replace:images": "tsx scripts/replace-images-with-supabase.ts",
-    "migrate:all": "tsx scripts/migrate-and-replace-media.ts",
-    "delete:unused": "tsx scripts/delete-unused-media.ts",
-    "migrate:special-files": "tsx scripts/migrate-special-files.ts",
-    "migrate:root-images": "tsx scripts/migrate-root-images.ts"
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/node": "^20.0.0",
