@@ -22,9 +22,27 @@ import CarouselNavigation from "@/components/CarouselNavigation";
 import SousSlider from "@/components/SousSlider";
 import ToggleButton from "@/components/ToggleButton";
 import React from "react";
+import { GripVertical } from "lucide-react";
 
 const TorresHybridPage = () => {
   const { t, language } = useTranslation();
+  const sendDebugLog = useCallback(
+    (hypothesisId: string, message: string, data: Record<string, unknown>) => {
+      fetch("http://127.0.0.1:7243/ingest/d48a3354-e397-4b13-87da-4e343fade1ce", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          runId: "pre-fix",
+          hypothesisId,
+          location: "src/app/models/torres-hybrid/page.tsx",
+          message,
+          data,
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+    },
+    []
+  );
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isSecondSectionVisible, setIsSecondSectionVisible] = useState(false);
@@ -73,9 +91,11 @@ const TorresHybridPage = () => {
   const [currentInteriorHotspotImage, setCurrentInteriorHotspotImage] =
     useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [exteriorImageAspect, setExteriorImageAspect] = useState<number | null>(
-    null
-  );
+  /** Natural px size — used to fit a box with exact aspect ratio (hotspot % = image repère on all viewports) */
+  const [exteriorFrontIntrinsic, setExteriorFrontIntrinsic] = useState({
+    w: 1540,
+    h: 893,
+  });
   const [exteriorCarView, setExteriorCarView] = useState<"front" | "rear">(
     "front"
   );
@@ -83,6 +103,17 @@ const TorresHybridPage = () => {
   const [dayNightSplit, setDayNightSplit] = useState(50);
   const [isDayNightDragging, setIsDayNightDragging] = useState(false);
   const dayNightSliderRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    // #region agent log
+    sendDebugLog("H4", "interior section attribute scan", {
+      dataidCount: document.querySelectorAll("[dataid]").length,
+      dataIdCount: document.querySelectorAll("[data-id]").length,
+      pathname: window.location.pathname,
+    });
+    // #endregion
+  }, [sendDebugLog]);
 
   const updateDayNightSplit = useCallback((clientX: number) => {
     const el = dayNightSliderRef.current;
@@ -95,26 +126,71 @@ const TorresHybridPage = () => {
   useEffect(() => {
     if (!isDayNightDragging) return;
     const onMove = (e: MouseEvent) => updateDayNightSplit(e.clientX);
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches[0]) {
+        e.preventDefault();
+        updateDayNightSplit(e.touches[0].clientX);
+      }
+    };
     const onUp = () => setIsDayNightDragging(false);
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onUp);
+    window.addEventListener("touchcancel", onUp);
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onUp);
+      window.removeEventListener("touchcancel", onUp);
     };
   }, [isDayNightDragging, updateDayNightSplit]);
 
-  const [exteriorRearImageAspect, setExteriorRearImageAspect] = useState<
-    number | null
-  >(null);
+  const [exteriorRearIntrinsic, setExteriorRearIntrinsic] = useState({
+    w: 1540,
+    h: 893,
+  });
+  /** Pixel size of the image frame: largest rect inside the container with same aspect as PNG (no letterboxing) */
+  const [exteriorFitBox, setExteriorFitBox] = useState({ w: 320, h: 185 });
+  const exteriorHotspotAreaRef = useRef<HTMLDivElement>(null);
+
+  const activeExteriorIntrinsic =
+    exteriorCarView === "front"
+      ? exteriorFrontIntrinsic
+      : exteriorRearIntrinsic;
+
+  useLayoutEffect(() => {
+    const el = exteriorHotspotAreaRef.current;
+    if (!el) return;
+    const measure = () => {
+      const r = el.getBoundingClientRect();
+      const iw = activeExteriorIntrinsic.w;
+      const ih = activeExteriorIntrinsic.h;
+      if (r.width <= 0 || r.height <= 0 || iw <= 0 || ih <= 0) return;
+      const ar = iw / ih;
+      let w = r.width;
+      let h = w / ar;
+      if (h > r.height) {
+        h = r.height;
+        w = h * ar;
+      }
+      setExteriorFitBox({ w, h });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [
+    activeExteriorIntrinsic.w,
+    activeExteriorIntrinsic.h,
+    exteriorCarView,
+  ]);
+
   const section2Ref = useRef<HTMLDivElement>(null);
   const section4Ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: section2Ref,
-    offset: ["start end", "end start"],
-  });
-  const { scrollYProgress: section4ScrollProgress } = useScroll({
-    target: section4Ref,
     offset: ["start end", "end start"],
   });
 
@@ -137,28 +213,6 @@ const TorresHybridPage = () => {
       "clamp(1.8rem, 5vw, 3rem)",
       "clamp(1.5rem, 4vw, 2.5rem)",
     ]
-  );
-
-  // Transform values for section 4 (Driver-Centric Cockpit)
-  const section4VideoWidth = useTransform(
-    section4ScrollProgress,
-    [0, 0.15, 0.3, 0.45, 0.6, 1],
-    ["30%", "50%", "70%", "100%", "100%", "100%"]
-  );
-  const section4TextScale = useTransform(
-    section4ScrollProgress,
-    [0, 0.2, 0.4, 0.5, 0.6, 1],
-    [0, 0.2, 0.5, 0.8, 1, 1]
-  );
-  const section4TextOpacity = useTransform(
-    section4ScrollProgress,
-    [0, 0.2, 0.4, 0.5, 0.6, 1],
-    [0, 0, 0.3, 0.7, 1, 1]
-  );
-  const section4Sticky = useTransform(
-    section4ScrollProgress,
-    [0, 0.1, 0.9, 1],
-    [0, 1, 1, 0]
   );
 
   const textLineHeight = useTransform(
@@ -1501,49 +1555,57 @@ const TorresHybridPage = () => {
       id: "dashboard",
       position: { x: "40%", y: "38%" },
       title:
-        language === "fr" ? "Tableau de bord panoramique" : "Panoramic display",
+        language === "fr"
+          ? '12.3" Panoramic display with Athena 2.0'
+          : '12.3" Panoramic display with Athena 2.0',
       description:
         language === "fr"
-          ? 'Cluster numérique 12,3" et système AVNT'
-          : '12.3" digital cluster and AVNT system',
+          ? "Large-screen cluster with KGM UI integrated platform Athena 2.0"
+          : "Large-screen cluster with KGM UI integrated platform Athena 2.0",
       content: {
         title:
           language === "fr"
-            ? "Tableau de bord panoramique"
-            : "Panoramic display",
+            ? '12.3" Panoramic display with Athena 2.0'
+            : '12.3" Panoramic display with Athena 2.0',
         subtitle:
           language === "fr"
-            ? 'Cluster numérique 12,3" et système AVNT'
-            : '12.3" digital cluster and AVNT system',
-        video:
-          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Modelspage/TORRES/btnsinterior/btn1/20250210093007663_gB1Jyo.mp4",
+            ? "Large-screen cluster with KGM UI integrated platform Athena 2.0"
+            : "Large-screen cluster with KGM UI integrated platform Athena 2.0",
+        image:
+          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/btn1.jpg",
         texts: [
           language === "fr"
-            ? 'Le tableau de bord numérique de 12,3" et le système AVNT fonctionnent comme un panneau de commande intégré, offrant un contrôle simple et intuitif de nombreuses informations, notamment les données de conduite.'
-            : 'The 12.3" digital cluster and AVNT system function as an integrated control panel, allowing easy and convenient control of various information, including driving data.',
+            ? "The large-screen cluster with the KGM UI integrated platform Athena 2.0 provides real-time navigation dual maps, air conditioning controller, and so on."
+            : "The large-screen cluster with the KGM UI integrated platform Athena 2.0 provides real-time navigation dual maps, air conditioning controller, and so on.",
         ],
       },
     },
     {
       id: "mood-lighting",
       position: { x: "62%", y: "43%" },
-      title: language === "fr" ? "Éclairage d'ambiance" : "Mood lighting",
+      title:
+        language === "fr"
+          ? "2nd-row heated seat control"
+          : "2nd-row heated seat control",
       description:
         language === "fr"
-          ? "Éclairage indirect personnalisable"
-          : "Customizable indirect lighting",
+          ? "The climate controller integrated into the panoramic display allows you to easily turn the second-row heated seats on and off."
+          : "The climate controller integrated into the panoramic display allows you to easily turn the second-row heated seats on and off.",
       content: {
-        title: language === "fr" ? "Éclairage d'ambiance" : "Mood lighting",
+        title:
+          language === "fr"
+            ? "2nd-row heated seat control"
+            : "2nd-row heated seat control",
         subtitle:
           language === "fr"
-            ? "Éclairage indirect personnalisable"
-            : "Customizable indirect lighting",
+            ? "The climate controller integrated into the panoramic display allows you to easily turn the second-row heated seats on and off."
+            : "The climate controller integrated into the panoramic display allows you to easily turn the second-row heated seats on and off.",
         image:
-          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/20250203180937116_B1zkON.jpg",
+          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/btn4.jpg",
         texts: [
           language === "fr"
-            ? "L'éclairage indirect de la planche de bord, de la console centrale et des panneaux de porte est personnalisable avec jusqu'à 32 combinaisons de couleurs (6 couleurs par défaut)"
-            : "The indirect lighting on the IP front, centre console, and door trims can be customized with up to 32 color combinations (with a default of 6 colors).",
+            ? "The climate controller integrated into the panoramic display allows you to easily turn the second-row heated seats on and off."
+            : "The climate controller integrated into the panoramic display allows you to easily turn the second-row heated seats on and off.",
         ],
       },
     },
@@ -1552,49 +1614,50 @@ const TorresHybridPage = () => {
       position: { x: "46%", y: "73%" },
       title:
         language === "fr"
-          ? "Sélecteur de Vitesse"
-          : "'Shift By Wire' Toggle switch",
+          ? "2nd-row reclining seats"
+          : "2nd-row reclining seats",
       description:
         language === "fr"
-          ? "Le sélecteur de vitesses moderne offre un contrôle précis de la transmission pour une conduite fluide et efficace."
-          : "Including a malfunction prevention safety system, enhancing operational convenience while also ensuring ample storage space.",
+          ? "Designed with second-row passengers in mind, ensuring comfort and relaxation even on long journeys. (Including 60:40 split-folding)"
+          : "Designed with second-row passengers in mind, ensuring comfort and relaxation even on long journeys. (Including 60:40 split-folding)",
       content: {
         title:
           language === "fr"
-            ? "Sélecteur de Vitesse"
-            : "'Shift By Wire' Toggle switch",
+            ? "2nd-row reclining seats"
+            : "2nd-row reclining seats",
         subtitle:
           language === "fr"
-            ? "Le sélecteur de vitesses moderne offre un contrôle précis de la transmission pour une conduite fluide et efficace."
-            : "Including a malfunction prevention safety system, enhancing operational convenience while also ensuring ample storage space.",
-        image: "/20250203180906900_ipNGJH.jpg",
+            ? "Designed with second-row passengers in mind, ensuring comfort and relaxation even on long journeys. (Including 60:40 split-folding)"
+            : "Designed with second-row passengers in mind, ensuring comfort and relaxation even on long journeys. (Including 60:40 split-folding)",
+        video:
+          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/video5.mp4",
         texts: [
           language === "fr"
-            ? "Le sélecteur de vitesses moderne offre un contrôle précis de la transmission pour une conduite fluide et efficace."
-            : "Including a malfunction prevention safety system, enhancing operational convenience while also ensuring ample storage space.",
+            ? "Designed with second-row passengers in mind, ensuring comfort and relaxation even on long journeys. (Including 60:40 split-folding)"
+            : "Designed with second-row passengers in mind, ensuring comfort and relaxation even on long journeys. (Including 60:40 split-folding)",
         ],
       },
     },
     {
       id: "centre-tray",
       position: { x: "50%", y: "75%" },
-      title: language === "fr" ? "Console centrale" : "Centre under tray",
+      title: language === "fr" ? "Ambient lighting" : "Ambient lighting",
       description:
         language === "fr"
-          ? "Idéal pour ranger facilement vos affaires personnelles comme les sacs et les parapluies pliants."
-          : "Easily store personal items such as bags and folding umbrellas.",
+          ? "The indirect lighting on the IP front, centre console, and door trims can be customized with up to 32 color combinations (with a default of 6 colors)."
+          : "The indirect lighting on the IP front, centre console, and door trims can be customized with up to 32 color combinations (with a default of 6 colors).",
       content: {
-        title: language === "fr" ? "Console centrale" : "Centre under tray",
+        title: language === "fr" ? "Ambient lighting" : "Ambient lighting",
         subtitle:
           language === "fr"
-            ? "Idéal pour ranger facilement vos affaires personnelles comme les sacs et les parapluies pliants."
-            : "Easily store personal items such as bags and folding umbrellas.",
-        image:
-          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Modelspage/TORRES/btnsinterior/btn4/20250124153631339_lNWy1V.jpg",
+            ? "The indirect lighting on the IP front, centre console, and door trims can be customized with up to 32 color combinations (with a default of 6 colors)."
+            : "The indirect lighting on the IP front, centre console, and door trims can be customized with up to 32 color combinations (with a default of 6 colors).",
+        video:
+          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/videobtn3.mp4",
         texts: [
           language === "fr"
-            ? "Idéal pour ranger facilement vos affaires personnelles comme les sacs et les parapluies pliants."
-            : "Easily store personal items such as bags and folding umbrellas.",
+            ? "The indirect lighting on the IP front, centre console, and door trims can be customized with up to 32 color combinations (with a default of 6 colors)."
+            : "The indirect lighting on the IP front, centre console, and door trims can be customized with up to 32 color combinations (with a default of 6 colors).",
         ],
       },
     },
@@ -1603,27 +1666,32 @@ const TorresHybridPage = () => {
       position: { x: "73%", y: "36%" },
       title:
         language === "fr"
-          ? "Mode Après-Soufflage"
-          : "After-blow mode(Air conditioning dehumidification)",
+          ? "Hanger sliding headrest"
+          : "Hanger sliding headrest",
       description:
         language === "fr"
-          ? "Déshumidification de la climatisation"
-          : "Air conditioning dehumidification",
+          ? "Can be used to conveniently hang items such as coats or shopping bags."
+          : "Can be used to conveniently hang items such as coats or shopping bags.",
       content: {
         title:
           language === "fr"
-            ? "Mode Après-Soufflage"
-            : "After-blow mode(Air conditioning dehumidification)",
+            ? "Hanger sliding headrest"
+            : "Hanger sliding headrest",
         subtitle:
           language === "fr"
-            ? "Déshumidification de la climatisation"
-            : "Air conditioning dehumidification",
-        image:
-          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/20250210153918931_EmNlrb.jpg",
+            ? "Can be used to conveniently hang items such as coats or shopping bags."
+            : "Can be used to conveniently hang items such as coats or shopping bags.",
+        images: [
+          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/btn2.jpg",
+          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/btn22.jpg",
+        ],
         texts: [
           language === "fr"
-            ? "Le système de climatisation sèche automatiquement l'humidité dans tout l'intérieur, y compris l'évaporateur, pour minimiser les facteurs qui causent des odeurs désagréables à l'intérieur du véhicule."
-            : "The air conditioning system automatically dries the moisture throughout the interior, including the evaporator, to minimize the factors that cause unpleasant odors inside the vehicle.",
+            ? "Can be used to conveniently hang items such as coats or shopping bags."
+            : "Can be used to conveniently hang items such as coats or shopping bags.",
+          language === "fr"
+            ? "Seatback pocket. Allowing second-row passengers to conveniently store items like smartphones."
+            : "Seatback pocket. Allowing second-row passengers to conveniently store items like smartphones.",
         ],
       },
     },
@@ -1632,6 +1700,12 @@ const TorresHybridPage = () => {
   // Interior hotspot handlers
   const handleInteriorHotspotClick = (hotspotId: string) => {
     console.log("Interior hotspot clicked:", hotspotId);
+    // #region agent log
+    sendDebugLog("H5", "interior hotspot clicked", {
+      hotspotId,
+      language,
+    });
+    // #endregion
     setSelectedInteriorHotspot(hotspotId);
     setCurrentInteriorHotspotImage(0);
     setIsInteriorSideMenuOpen(true);
@@ -2290,8 +2364,19 @@ const TorresHybridPage = () => {
             </div>
             <div className="text-box-bottom">
               <div className="btn-group">
-                <a href="#catalog" className="btn">CATALOG</a>
-                <a href="#accessory" className="btn">ACCESSORY</a>
+                <motion.a
+                  href="/book-test-drive?model=torres-hybrid"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn"
+                >
+                  {language === "fr"
+                    ? "Réservez Votre Essai"
+                    : "Book Your Test Drive"}
+                </motion.a>
               </div>
               <div className="selling-point">
                 <div className="selling-point__box">
@@ -2299,8 +2384,12 @@ const TorresHybridPage = () => {
                     <img src="https://en.kg-mobility.com/attached/contents/display/image/2000003000100090002/20250903152504697_g6Mnsh.svg" alt="Freedom, Redefined" className="w-10 h-10 lg:w-12 lg:h-12" />
                   </div>
                   <div className="selling-point__text">
-                    <p className="point-text">Dual Tech Hybrid</p>
-                    <p className="point-title">Freedom, Redefined</p>
+                    <p className="point-text">
+                      {language === "fr" ? "Hybride Double Technologie" : "Dual Tech Hybrid"}
+                    </p>
+                    <p className="point-title">
+                      {language === "fr" ? "La liberté, redéfinie" : "Freedom, Redefined"}
+                    </p>
                   </div>
                 </div>
                 <div className="selling-point__box">
@@ -2308,8 +2397,12 @@ const TorresHybridPage = () => {
                     <img src="https://en.kg-mobility.com/attached/contents/display/image/2000003000100090002/20250903152630515_9PLwRO.svg" alt="Torres in Black" className="w-10 h-10 lg:w-12 lg:h-12" />
                   </div>
                   <div className="selling-point__text">
-                    <p className="point-text">Black Edition</p>
-                    <p className="point-title">Torres in Black</p>
+                    <p className="point-text">
+                      {language === "fr" ? "Edition Noire" : "Black Edition"}
+                    </p>
+                    <p className="point-title">
+                      {language === "fr" ? "Torres en noir" : "Torres in Black"}
+                    </p>
                   </div>
                 </div>
                 <div className="selling-point__box">
@@ -2317,8 +2410,12 @@ const TorresHybridPage = () => {
                     <img src="https://en.kg-mobility.com/attached/contents/display/image/2000003000100090002/20250903152714317_ceMfan.svg" alt="Quieter Drive" className="w-10 h-10 lg:w-12 lg:h-12" />
                   </div>
                   <div className="selling-point__text">
-                    <p className="point-text">Enhanced NVH</p>
-                    <p className="point-title">Quieter Drive</p>
+                    <p className="point-text">
+                      {language === "fr" ? "NVH renforcé" : "Enhanced NVH"}
+                    </p>
+                    <p className="point-title">
+                      {language === "fr" ? "Conduite plus silencieuse" : "Quieter Drive"}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -2435,17 +2532,22 @@ const TorresHybridPage = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-100 to-black"></div>
 
         {/* Day & Night Section */}
-        <div className="relative z-10 w-[80%] max-w-6xl mx-auto py-12 lg:py-16 min-h-[600px] lg:min-h-[720px]">
+        <div className="relative z-10 w-[92%] sm:w-[85%] lg:w-[80%] max-w-6xl mx-auto py-12 lg:py-16 min-h-[600px] lg:min-h-[720px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-8"
+            className="text-center mb-4 sm:mb-6"
           >
             <h3 className="text-white text-2xl lg:text-3xl font-bold uppercase tracking-wide">
               {language === "fr" ? "Jour & Nuit" : "Day & Night"}
             </h3>
+            <p className="mt-3 text-white/70 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+              {language === "fr"
+                ? "Glissez le curseur pour comparer le jour et la nuit — ou touchez et faites glisser sur mobile."
+                : "Drag the handle to compare day and night — or swipe on mobile."}
+            </p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -2510,10 +2612,25 @@ const TorresHybridPage = () => {
           >
             <div
               ref={dayNightSliderRef}
-              className="relative w-full h-[360px] lg:h-[520px] min-h-[360px] lg:min-h-[520px] select-none cursor-col-resize"
+              role="slider"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round(dayNightSplit)}
+              aria-label={
+                language === "fr"
+                  ? "Comparaison jour et nuit"
+                  : "Day and night comparison"
+              }
+              className="relative w-full h-[360px] lg:h-[520px] min-h-[360px] lg:min-h-[520px] select-none cursor-col-resize touch-none rounded-xl ring-1 ring-white/10"
               onMouseDown={(e) => {
+                e.preventDefault();
                 setIsDayNightDragging(true);
                 updateDayNightSplit(e.clientX);
+              }}
+              onTouchStart={(e) => {
+                setIsDayNightDragging(true);
+                const x = e.touches[0]?.clientX;
+                if (x != null) updateDayNightSplit(x);
               }}
             >
               {/* Night image (full, base layer) - same size/position for both */}
@@ -2561,30 +2678,47 @@ const TorresHybridPage = () => {
                   />
                 )}
               </div>
-              {/* Day / Night labels - inside the image area */}
-              <div className="absolute bottom-6 left-1/4 -translate-x-1/2 z-10 pointer-events-none">
-                <span className="text-black font-semibold text-sm lg:text-base uppercase tracking-wide drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)]">
+              {/* Day / Night labels - readable pills */}
+              <div className="absolute top-4 left-4 z-10 pointer-events-none">
+                <span className="inline-flex items-center rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 text-white text-xs sm:text-sm font-semibold uppercase tracking-wide ring-1 ring-white/20 shadow-lg">
                   {language === "fr" ? "Jour" : "Day"}
                 </span>
               </div>
-              <div className="absolute bottom-6 left-3/4 -translate-x-1/2 z-10 pointer-events-none">
-                <span className="text-white font-semibold text-sm lg:text-base uppercase tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+              <div className="absolute top-4 right-4 z-10 pointer-events-none">
+                <span className="inline-flex items-center rounded-full bg-black/55 backdrop-blur-md px-3 py-1.5 text-white text-xs sm:text-sm font-semibold uppercase tracking-wide ring-1 ring-white/20 shadow-lg">
                   {language === "fr" ? "Nuit" : "Night"}
                 </span>
               </div>
-              {/* Draggable divider line */}
+              {/* Full-height split line + draggable handle (touch + mouse) */}
               <div
-                className="absolute top-1/2 w-0.5 h-[50px] -translate-y-1/2 bg-white/90 shadow-lg z-20"
-                style={{ left: `${dayNightSplit}%`, transform: "translate(-50%, -50%)" }}
+                className="absolute inset-y-0 z-20 flex flex-col items-center justify-center pointer-events-none"
+                style={{ left: `${dayNightSplit}%`, transform: "translateX(-50%)" }}
               >
+                <div
+                  className="absolute inset-y-0 w-1 sm:w-0.5 bg-gradient-to-b from-white/40 via-white to-white/40 shadow-[0_0_16px_rgba(255,255,255,0.45)] rounded-full pointer-events-none"
+                  aria-hidden="true"
+                />
                 <button
                   type="button"
-                  className="btn-day-night absolute left-1/2 top-1/2 w-14 h-14 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-800/95 text-white border-2 border-white/80 shadow-xl flex items-center justify-center gap-0.5 hover:bg-gray-700/95 transition-colors cursor-grab active:cursor-grabbing"
-                  aria-label={language === "fr" ? "Déplacer pour comparer jour et nuit" : "Drag to compare day and night"}
+                  className="btn-day-night pointer-events-auto relative flex h-14 w-14 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-full border-2 border-white/90 bg-gray-900/95 text-white shadow-xl transition-colors hover:bg-gray-800/95 active:scale-[0.98] cursor-grab active:cursor-grabbing touch-manipulation"
+                  aria-label={
+                    language === "fr"
+                      ? "Déplacer pour comparer jour et nuit"
+                      : "Drag to compare day and night"
+                  }
+                  onMouseDown={(e) => {
+                    e.stopPropagation();
+                    setIsDayNightDragging(true);
+                    updateDayNightSplit(e.clientX);
+                  }}
+                  onTouchStart={(e) => {
+                    e.stopPropagation();
+                    setIsDayNightDragging(true);
+                    const x = e.touches[0]?.clientX;
+                    if (x != null) updateDayNightSplit(x);
+                  }}
                 >
-                  <span className="text-white font-bold text-lg" aria-hidden="true">&lsaquo;</span>
-                  <span className="w-px h-5 bg-white/80" aria-hidden="true" />
-                  <span className="text-white font-bold text-lg" aria-hidden="true">&rsaquo;</span>
+                  <GripVertical className="h-7 w-7 sm:h-8 sm:w-8" strokeWidth={2.25} aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -2598,7 +2732,7 @@ const TorresHybridPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-white text-lg uppercase tracking-wide mb-4"
+            className="text-black text-lg uppercase tracking-wide mb-4"
           >
             {language === "fr" ? "EXTÉRIEUR" : "EXTERIOR"}
           </motion.h3>
@@ -2661,29 +2795,33 @@ const TorresHybridPage = () => {
           </motion.div>
         </div>
 
-        {/* Car Display */}
-        <div className="relative z-10 flex-1 flex items-center justify-center mt-8">
+        {/* Car Display — phone sizes normalized (dvh + vw cap) so hotspots stay aligned to image */}
+        <div className="relative z-10 flex-1 flex w-full items-center justify-center mt-8 px-2 sm:px-4 min-w-0">
           <motion.div
-            key={exteriorCarView}
             initial={{ opacity: 1, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0 }}
-            className="relative w-full max-w-[80%] lg:max-w-none h-[17.5vh] lg:h-[700px] flex items-center justify-center mb-20 lg:mb-40"
+            className="relative w-full max-w-[min(100%,520px)] sm:max-w-[min(100%,560px)] md:max-w-[90%] lg:max-w-none min-w-0 h-[clamp(268px,min(48dvh,92vw),400px)] lg:h-[700px] lg:min-h-0 lg:max-h-none flex items-center justify-center mb-20 lg:mb-40"
           >
-            {exteriorCarView === "front" ? (
-              <>
-                {/* Wrapper sized to image aspect ratio so hotspots are relative to image */}
+            {/* Measured frame = exact aspect ratio of PNG → fill + contain fills box 1:1 → % hotspots track image on every device */}
+            <div
+              ref={exteriorHotspotAreaRef}
+              className="flex h-full w-full min-h-0 min-w-0 items-center justify-center"
+            >
+              {exteriorCarView === "front" ? (
                 <div
-                  className="relative h-full w-auto flex-none"
+                  className="relative shrink-0 overflow-hidden rounded-lg"
                   style={{
-                    aspectRatio: exteriorImageAspect ?? 4 / 5,
+                    width: exteriorFitBox.w,
+                    height: exteriorFitBox.h,
                   }}
                 >
                   <Image
                     src="https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/exterior/front.png"
                     alt="TORRES front view"
                     fill
-                    className="object-contain"
+                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 700px"
+                    className="object-contain select-none"
                     style={{
                       backgroundColor: "transparent",
                       mixBlendMode: "normal",
@@ -2691,13 +2829,13 @@ const TorresHybridPage = () => {
                     onLoad={(e) => {
                       const img = e.target as HTMLImageElement;
                       if (img?.naturalWidth && img?.naturalHeight) {
-                        setExteriorImageAspect(
-                          img.naturalWidth / img.naturalHeight
-                        );
+                        setExteriorFrontIntrinsic({
+                          w: img.naturalWidth,
+                          h: img.naturalHeight,
+                        });
                       }
                     }}
                   />
-                  {/* Interactive Hotspots - front view only */}
                   {carHotspots.map((hotspot) => (
                     <motion.button
                       key={hotspot.id}
@@ -2705,7 +2843,7 @@ const TorresHybridPage = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
-                      className="absolute w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
+                      className="absolute z-10 w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
                       style={{
                         left: hotspot.position.x,
                         top: hotspot.position.y,
@@ -2716,12 +2854,11 @@ const TorresHybridPage = () => {
                       +
                     </motion.button>
                   ))}
-                  {/* Hotspot Info Panel */}
                   {activeHotspot && (
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm rounded-lg p-4 max-w-xs"
+                      className="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur-sm rounded-lg p-4 max-w-xs"
                     >
                       <h4 className="text-kgm-amber font-bold text-lg mb-2">
                         {carHotspots.find((h) => h.id === activeHotspot)?.title}
@@ -2738,21 +2875,20 @@ const TorresHybridPage = () => {
                     </motion.div>
                   )}
                 </div>
-              </>
-            ) : (
-              <>
-                {/* Wrapper sized to rear image aspect ratio so hotspot positions stay relative to image */}
+              ) : (
                 <div
-                  className="relative h-full w-auto flex-none"
+                  className="relative shrink-0 overflow-hidden rounded-lg"
                   style={{
-                    aspectRatio: exteriorRearImageAspect ?? 4 / 5,
+                    width: exteriorFitBox.w,
+                    height: exteriorFitBox.h,
                   }}
                 >
                   <Image
                     src="https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/exterior/back.png"
                     alt="TORRES rear view"
                     fill
-                    className="object-contain"
+                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 700px"
+                    className="object-contain select-none"
                     style={{
                       backgroundColor: "transparent",
                       mixBlendMode: "normal",
@@ -2760,13 +2896,13 @@ const TorresHybridPage = () => {
                     onLoad={(e) => {
                       const img = e.target as HTMLImageElement;
                       if (img?.naturalWidth && img?.naturalHeight) {
-                        setExteriorRearImageAspect(
-                          img.naturalWidth / img.naturalHeight
-                        );
+                        setExteriorRearIntrinsic({
+                          w: img.naturalWidth,
+                          h: img.naturalHeight,
+                        });
                       }
                     }}
                   />
-                  {/* Rear view hotspots - positions in % relative to image */}
                   {rearHotspots.map((hotspot) => (
                     <motion.button
                       key={hotspot.id}
@@ -2775,7 +2911,7 @@ const TorresHybridPage = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
-                      className="absolute w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
+                      className="absolute z-10 w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
                       style={{
                         left: hotspot.position.x,
                         top: hotspot.position.y,
@@ -2788,8 +2924,8 @@ const TorresHybridPage = () => {
                     </motion.button>
                   ))}
                 </div>
-              </>
-            )}
+              )}
+            </div>
           </motion.div>
         </div>
 
@@ -3321,65 +3457,154 @@ const TorresHybridPage = () => {
           )}
         </div>
 
-        {/* Section 4: Modern & Sleek Display */}
+        {/* Section 4: Interior Features & Colors */}
         <section
           ref={section4Ref}
-          className="relative h-screen bg-black overflow-hidden"
+          className="relative min-h-screen bg-black overflow-hidden py-14 md:py-20"
         >
-          <motion.div
-            className="sticky top-0 w-full h-screen flex items-center justify-center"
-            style={{
-              position: "sticky",
-              top: 0,
-              zIndex: 1,
-            }}
-          >
-            {/* Background Video */}
-            <motion.div
-              className="relative h-full flex items-center justify-center"
-              style={{
-                width: section4VideoWidth,
-                height: "100%",
-              }}
-            >
-              <video
-                className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-              >
-                <source
-                  src="https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Modelspage/TORRES/section4/20250220173530895_DesXdL.mp4"
-                  type="video/mp4"
-                />
-              </video>
+          <div className="section-motion-title relative z-20 mb-8 md:mb-12">
+            <div className="title-wrap text-center">
+              <div className="title motion1">
+                <span
+                  className="block text-white font-bold text-3xl md:text-5xl tracking-normal"
+                  style={{ opacity: 1 }}
+                >
+                  {language === "fr" ? "INTÉRIEUR" : "INTERIOR"}
+                </span>
+              </div>
+              <div className="title motion2 mt-1 md:mt-2">
+                <span
+                  className="block font-semibold text-xl md:text-3xl"
+                  style={{ opacity: 1, color: "var(--sec-gold)" }}
+                >
+                  {language === "fr" ? "ÉQUIPEMENTS & COULEURS" : "FEATURES & COLORS"}
+                </span>
+              </div>
+            </div>
+          </div>
 
-              {/* Text Overlay */}
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center z-10"
-                style={{
-                  scale: section4TextScale,
-                  opacity: 1,
-                }}
-              >
-                <h2
-                  className="text-white font-bold text-center leading-tight"
-                  style={{
-                    fontSize: "70px",
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
-                  }}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      language === "fr"
-                        ? "Un cockpit pensé pour le conducteur"
-                        : "DRIVER-CENTRIC COCKPIT",
-                  }}
-                />
-              </motion.div>
-            </motion.div>
-          </motion.div>
+          <div className="section-detail-pick type-interior relative z-10">
+            <div data-id="interior-design">
+              <div className="main-section horizontal-long">
+                <div className="section-detail-pick-contents">
+                  <div className="detail-pick-inner-contents">
+                    <div className="design-detail-wrap">
+                      <div className="design-detail__gallery-wrap relative mx-auto w-[96%] max-w-[1360px]">
+                        <div className="relative w-full overflow-hidden rounded-md aspect-[16/9]">
+                          <Image
+                            src="https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/20250904160625424_2ucju7.jpg"
+                            alt="Torres Hybrid interior"
+                            fill
+                            className="object-cover"
+                            quality={95}
+                            priority
+                          />
+
+                          <motion.button
+                            type="button"
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="absolute z-10 w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
+                            style={{
+                              left: "57%",
+                              top: "15%",
+                              transform: "translate(-50%, -50%)",
+                            }}
+                            onClick={() => handleInteriorHotspotClick("dashboard")}
+                            aria-label={language === "fr" ? "Voir cette partie en détail" : "View this part in detail"}
+                          >
+                            +
+                          </motion.button>
+                          <motion.button
+                            type="button"
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="absolute z-10 w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
+                            style={{
+                              left: "72%",
+                              top: "20%",
+                              transform: "translate(-50%, -50%)",
+                            }}
+                            onClick={() => handleInteriorHotspotClick("after-blow")}
+                            aria-label={language === "fr" ? "Voir cette partie en détail" : "View this part in detail"}
+                          >
+                            +
+                          </motion.button>
+                          <motion.button
+                            type="button"
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="absolute z-10 w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
+                            style={{
+                              left: "19%",
+                              top: "39%",
+                              transform: "translate(-50%, -50%)",
+                            }}
+                            onClick={() => handleInteriorHotspotClick("mood-lighting")}
+                            aria-label={language === "fr" ? "Voir cette partie en détail" : "View this part in detail"}
+                          >
+                            +
+                          </motion.button>
+                          <motion.button
+                            type="button"
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="absolute z-10 w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
+                            style={{
+                              left: "31%",
+                              top: "85%",
+                              transform: "translate(-50%, -50%)",
+                            }}
+                            onClick={() => handleInteriorHotspotClick("gear-selector")}
+                            aria-label={language === "fr" ? "Voir cette partie en détail" : "View this part in detail"}
+                          >
+                            +
+                          </motion.button>
+                          <motion.button
+                            type="button"
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="absolute z-10 w-4 h-4 lg:w-8 lg:h-8 bg-kgm-amber rounded-full flex items-center justify-center text-black font-bold text-xs lg:text-lg shadow-lg hover:bg-kgm-amber/80 transition-all duration-300"
+                            style={{
+                              left: "91%",
+                              top: "32%",
+                              transform: "translate(-50%, -50%)",
+                            }}
+                            onClick={() => handleInteriorHotspotClick("centre-tray")}
+                            aria-label={language === "fr" ? "Voir cette partie en détail" : "View this part in detail"}
+                          >
+                            +
+                          </motion.button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="switch-round-btns-wrap" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
+
+        <CarFeatureSidebar
+          isOpen={isInteriorSideMenuOpen}
+          onClose={closeInteriorSideMenu}
+          selectedHotspot={selectedInteriorHotspot}
+          getHotspotContent={getInteriorHotspotContent}
+          currentHotspotImage={currentInteriorHotspotImage}
+          setCurrentHotspotImage={setCurrentInteriorHotspotImage}
+          sectionType="interior"
+        />
 
         {/* Section 5: Interior Features & Colors */}
         <section className="relative bg-black overflow-hidden">
@@ -4127,7 +4352,7 @@ const TorresHybridPage = () => {
             <div className="flex flex-col items-center justify-center">
               {/* Download Button */}
               <a
-                href="https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/DPR-KGM-Fiche%20Technique%20TORRES%20HEV%20VERSO%20EXE%20%20(1)_compressed.pdf"
+                href="/brochures/DPR-KGM-Fiche%20Technique%20TORRES%20HEV%20VERSO%20EXE%20.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-10 py-5 bg-black text-white rounded-lg font-semibold text-lg hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"

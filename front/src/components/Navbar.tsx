@@ -37,7 +37,6 @@ const Navbar = () => {
   const leftMenuItems = [
     { name: (t as any)?.navigation?.models || "MODELS", href: '/models' },
     { name: (t as any)?.navigation?.contactUs || "CONTACT US", href: '/contact-us' },
-    { name: (t as any)?.navigation?.myOrders || "MY ORDERS", href: '/my-orders' },
   ];
 
   const rightMenuItems = [];
@@ -293,20 +292,6 @@ const Navbar = () => {
                 />
               </motion.a>
 
-              {/* MY ORDERS */}
-              <motion.a
-                href="/my-orders"
-                whileHover={{ y: -2 }}
-                className="relative text-white font-semibold uppercase tracking-wide text-sm cursor-pointer group"
-              >
-                {(t as any)?.navigation?.myOrders || "MY ORDERS"}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-white"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.2 }}
-                />
-              </motion.a>
             </div>
 
 

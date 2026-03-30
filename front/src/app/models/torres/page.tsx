@@ -1496,26 +1496,28 @@ const TorresPage = () => {
       id: "dashboard",
       position: { x: "40%", y: "38%" },
       title:
-        language === "fr" ? "Tableau de bord panoramique" : "Panoramic display",
+        language === "fr"
+          ? '12.3" Panoramic display with Athena 2.0'
+          : '12.3" Panoramic display with Athena 2.0',
       description:
         language === "fr"
-          ? 'Cluster numérique 12,3" et système AVNT'
-          : '12.3" digital cluster and AVNT system',
+          ? "Large-screen cluster with KGM UI integrated platform Athena 2.0"
+          : "Large-screen cluster with KGM UI integrated platform Athena 2.0",
       content: {
         title:
           language === "fr"
-            ? "Tableau de bord panoramique"
-            : "Panoramic display",
+            ? '12.3" Panoramic display with Athena 2.0'
+            : '12.3" Panoramic display with Athena 2.0',
         subtitle:
           language === "fr"
-            ? 'Cluster numérique 12,3" et système AVNT'
-            : '12.3" digital cluster and AVNT system',
-        video:
-          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Modelspage/TORRES/btnsinterior/btn1/20250210093007663_gB1Jyo.mp4",
+            ? "Large-screen cluster with KGM UI integrated platform Athena 2.0"
+            : "Large-screen cluster with KGM UI integrated platform Athena 2.0",
+        image:
+          "https://vbcgnalssebtzofpeslx.supabase.co/storage/v1/object/public/media/assets/Models/TORRESHYBRID/btn1.jpg",
         texts: [
           language === "fr"
-            ? 'Le tableau de bord numérique de 12,3" et le système AVNT fonctionnent comme un panneau de commande intégré, offrant un contrôle simple et intuitif de nombreuses informations, notamment les données de conduite.'
-            : 'The 12.3" digital cluster and AVNT system function as an integrated control panel, allowing easy and convenient control of various information, including driving data.',
+            ? "The large-screen cluster with the KGM UI integrated platform Athena 2.0 provides real-time navigation dual maps, air conditioning controller, and so on."
+            : "The large-screen cluster with the KGM UI integrated platform Athena 2.0 provides real-time navigation dual maps, air conditioning controller, and so on.",
         ],
       },
     },
