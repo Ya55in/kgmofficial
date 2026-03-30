@@ -95,6 +95,10 @@ export default function Footer() {
                   </p>
                   <p className="text-white/70">457 Bd Hassan II, Résidence Meryem Agdal Rabat</p>
                 </div>
+                <div>
+                  <p className="font-semibold mb-1">Lissasfa:</p>
+                  <p className="text-white/70">Km9, route d&apos;el jadida</p>
+                </div>
               </div>
             </motion.div>
 

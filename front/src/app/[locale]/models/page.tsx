@@ -159,12 +159,16 @@ export default function ModelsPage() {
                       className="block"
                     >
                       <div className="aspect-[4/3] relative overflow-hidden rounded-lg bg-gray-100 cursor-pointer">
-                        <div className={`absolute inset-0 ${model.id === 'torres-hybrid' ? 'pl-4' : ''}`}>
+                        <div className="absolute inset-0">
                           <Image
                             src={model.image}
                             alt={model.name}
                             fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            className={
+                              model.id === "torres-hybrid"
+                                ? "object-cover object-center scale-[0.85] origin-center transition-transform duration-500 group-hover:scale-[0.8925]"
+                                : "object-cover group-hover:scale-105 transition-transform duration-500"
+                            }
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                         </div>
